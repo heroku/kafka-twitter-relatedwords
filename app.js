@@ -92,7 +92,7 @@ return producer.init().then(function() {
         // Beautiful function from here
         // http://stackoverflow.com/questions/30906807/word-frequency-in-javascript
         function wordFreq(accumulator, string) {
-          return _.replace(string, /[.!?"'#,():-]/g, '')
+          return _.replace(string, /[.!?"'#,():;-]/g, '')
             .split(/\s/)
             .map(word => word.toLowerCase())
             .filter(word => ( !_.includes(stopWords, word) )) //dump words in stop list
@@ -128,8 +128,6 @@ return producer.init().then(function() {
 
                 mostFrequentWords[key] = val;
             }
-
-            console.log(mostFrequentWords);
 
             producer.send({
                 topic: `${consumerTopicBase}-relatedwords`,

@@ -129,12 +129,16 @@ return producer.init().then(function() {
                 mostFrequentWords[key] = val;
             }
 
+            let msg = {
+                time: Date.now(),
+                relations: mostFrequentWords
+            };
+
             producer.send({
                 topic: `${consumerTopicBase}-relatedwords`,
                 partition: 0,
                 message: {
-                    time: Date.now(),
-                    relations: mostFrequentWords
+                    value: JSONbig.stringify(msg)
                 }
             })
         });

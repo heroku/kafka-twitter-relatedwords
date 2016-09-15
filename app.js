@@ -95,7 +95,7 @@ return producer.init().then(function() {
           return _.replace(string, /[.!?"'#,():-]/g, '')
             .split(/\s/)
             .map(word => word.toLowerCase())
-            .filter(word => ( !stopWords.includes(word) )) //dump words in stop list
+            .filter(word => ( !_.includes(stopWords, word) )) //dump words in stop list
             .filter(word => word.match(/.{2,}/)) //dump single char words
             .filter(word => ( !word.match(/\d+/) )) //dump all numeric words
             .filter(word => ( !word.match(/http/) )) //dump words containing http
